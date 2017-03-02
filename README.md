@@ -32,10 +32,14 @@ The following **additional** features are implemented:
 ## Video Walkthrough 
 
 Here's a walkthrough of implemented user stories:
+
 <img src="http://i.imgur.com/s4BhMDR.gif" width="200">
+
 GIF created with [Imgur](http://imgur.com/).
 
+
 Youtuebe Video:
+
 https://youtu.be/DUanThjTeu0
 
 ## Notes
