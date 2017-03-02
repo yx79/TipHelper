@@ -1,9 +1,3 @@
-# TipHelper
-
-Simple app to calculate tip and slipt bill with friends.
-
-
-
 # Pre-work - *TipHelper*
 
 **TipHelper** is a tip calculator application for iOS, you can also split bill with friends.
