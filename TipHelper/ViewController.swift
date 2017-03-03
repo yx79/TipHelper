@@ -8,6 +8,10 @@
 
 import UIKit
 
+struct defaultsKeys {
+    static let key = "billAmountStringKey"
+}
+
 class ViewController: UIViewController {
 
     @IBOutlet weak var billTextField: UITextField!
@@ -36,10 +40,35 @@ class ViewController: UIViewController {
         // localize to your grouping and decimal separator
         currencyFormatter.locale = NSLocale.current
         
+        // Set default value to 0
+        tipLabel.text = currencyFormatter.string(from: NSNumber(value:0))
+        totalLabel.text = currencyFormatter.string(from: NSNumber(value:0))
+        splitTipLabel.text = tipLabel.text
+        splitTotalLabel.text = totalLabel.text
+        
+        
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         billTextField.becomeFirstResponder()
+    }
+    
+    
+    //Use UserDefaults to remember the bill amount across app restarts
+    override func viewWillDisappear(_ animated: Bool) {
+        // Setting bill amount
+        let defaults = UserDefaults.standard
+        defaults.setValue(billTextField.text, forKey: defaultsKeys.key)
+        defaults.synchronize()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // Getting the saved bill amount
+        let defaults = UserDefaults.standard
+        if let valueString = defaults.string(forKey: defaultsKeys.key) {
+            billTextField.text = valueString
+        }
     }
 
     
