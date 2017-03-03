@@ -35,7 +35,7 @@ GIF created with [Imgur](http://imgur.com/).
 
 Youtube Video:
 
-https://youtu.be/DUanThjTeu0
+https://youtu.be/ETUqew1yZu8
 
 ## Notes
 
