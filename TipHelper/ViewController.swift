@@ -28,6 +28,10 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        billTextField.becomeFirstResponder()
+    }
 
     
     @IBAction func onTap(_ sender: AnyObject) {
@@ -77,7 +81,10 @@ class ViewController: UIViewController {
         let tipIndex = tipStr.index(tipStr.startIndex, offsetBy:1)
         let tipString = tipStr.substring(from: tipIndex)
         let tip = Double(tipString)
-        splitTipLabel.text = String(format:"$%0.2f", splitCalculate(number: number, amount: tip!))
+        if (tip != nil) {
+            splitTipLabel.text = String(format:"$%0.2f", splitCalculate(number: number, amount: tip!))
+        }
+        
         
         
         // split total
@@ -86,8 +93,10 @@ class ViewController: UIViewController {
         let totalString = totalStr.substring(from: totalIndex)
         //print(totalString)
         let total = Double(totalString)
-        splitTotalLabel.text = String(format:"$%0.2f", splitCalculate(number: number, amount: total!))
-
+        if (total != nil) {
+            splitTotalLabel.text = String(format:"$%0.2f", splitCalculate(number: number, amount: total!))
+        }
+        
     }
     
     // return divide calculation amount / number
