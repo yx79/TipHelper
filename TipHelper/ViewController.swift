@@ -23,9 +23,18 @@ class ViewController: UIViewController {
     @IBOutlet weak var splitTipLabel: UILabel!
     @IBOutlet weak var splitTotalLabel: UILabel!
     
+    // global var
+    var currencyFormatter = NumberFormatter()
+    var tip : Double = Double()
+    var total : Double = Double()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // use currency formatter to locale-specific currency and show currency thousands separators
+        currencyFormatter.usesGroupingSeparator = true
+        currencyFormatter.numberStyle = .currency
+        // localize to your grouping and decimal separator
+        currencyFormatter.locale = NSLocale.current
         
     }
     
@@ -40,19 +49,19 @@ class ViewController: UIViewController {
     
     
     @IBAction func updateCalculation(_ sender: AnyObject) {
-        
         // textField to double number. ?? return 0 if nil
         let bill = Double(billTextField.text!) ?? 0
         let tipPercentage = [0.1, 0.15, 0.2]
-        let tip = bill * tipPercentage[tipSegment.selectedSegmentIndex]
-        let total = bill + tip
-        tipLabel.text = String(format:"$%0.2f", tip)
-        totalLabel.text = String(format:"$%0.2f", total)
+        tip = bill * tipPercentage[tipSegment.selectedSegmentIndex]
+        total = bill + tip
+        
+        tipLabel.text = currencyFormatter.string(from: NSNumber(value:tip))
+        totalLabel.text = currencyFormatter.string(from: NSNumber(value:total))
         
         // split between 1 person after input/tip percentage change
         personNumber.text = "1"
-        splitTipLabel.text = String(format:"$%0.2f", tip)
-        splitTotalLabel.text = String(format:"$%0.2f", total)
+        splitTipLabel.text = tipLabel.text
+        splitTotalLabel.text = totalLabel.text
     }
     
 
@@ -77,26 +86,12 @@ class ViewController: UIViewController {
     // update split of tip and total with number
     func updateSplit(number: Int) {
         // split tip
-        let tipStr = tipLabel.text!
-        let tipIndex = tipStr.index(tipStr.startIndex, offsetBy:1)
-        let tipString = tipStr.substring(from: tipIndex)
-        let tip = Double(tipString)
-        if (tip != nil) {
-            splitTipLabel.text = String(format:"$%0.2f", splitCalculate(number: number, amount: tip!))
-        }
-        
-        
+        let splitTip = splitCalculate(number: number, amount: tip)
+        splitTipLabel.text = currencyFormatter.string(from: NSNumber(value:splitTip))
         
         // split total
-        let totalStr = totalLabel.text!
-        let totalIndex = totalStr.index(totalStr.startIndex, offsetBy:1)
-        let totalString = totalStr.substring(from: totalIndex)
-        //print(totalString)
-        let total = Double(totalString)
-        if (total != nil) {
-            splitTotalLabel.text = String(format:"$%0.2f", splitCalculate(number: number, amount: total!))
-        }
-        
+        let splitTotal = splitCalculate(number: number, amount: total)
+        splitTotalLabel.text = currencyFormatter.string(from: NSNumber(value: splitTotal))
     }
     
     // return divide calculation amount / number
