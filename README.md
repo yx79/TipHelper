@@ -29,6 +29,7 @@ Here's a walkthrough of implemented user stories:
 
 <img src="http://imgur.com/v5jLQlB.gif" width="200">
 
+<img src="http://imgur.com/V1EYieX.gif" width="200">
 GIF created with [Imgur](http://imgur.com/).
 
 
