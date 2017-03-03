@@ -11,7 +11,7 @@ Time spent: **6** hours spent in total
 The following **required** functionality is complete:
 
 * [X] User can enter a bill amount, choose a tip percentage, and see the tip and total values.
-* [X] Settings page to change the default tip percentage.
+* [] Settings page to change the default tip percentage.
 
 The following **optional** features are implemented:
 * [X] UI animations
