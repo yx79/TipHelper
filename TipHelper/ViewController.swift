@@ -99,6 +99,12 @@ class ViewController: UIViewController {
         number += 1
         personNumber.text = "\(number)"
         updateSplit(number: number)
+        
+        // UIAnimation when hit button, people number effects
+        UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 0, initialSpringVelocity: 0, options: UIViewAnimationOptions.curveEaseIn, animations: {
+            self.personNumber.transform = CGAffineTransform(scaleX: 2, y: 2)
+        }, completion: { (finished) -> Void in self.personNumber.transform = CGAffineTransform(scaleX: 1, y: 1) })
+
     }
     
     
@@ -110,6 +116,12 @@ class ViewController: UIViewController {
         }
         personNumber.text = "\(number)"
         updateSplit(number: number)
+        
+        // UIAnimation when hit button, people number effects
+        UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 0, initialSpringVelocity: 0, options: UIViewAnimationOptions.curveEaseIn, animations: {
+            self.personNumber.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+        }, completion: { (finished) -> Void in self.personNumber.transform = CGAffineTransform(scaleX: 1, y: 1) })
+
     }
     
     // update split of tip and total with number
