@@ -15,15 +15,10 @@ struct defaultsKeys {
 class ViewController: UIViewController {
 
     @IBOutlet weak var billTextField: UITextField!
-    
     @IBOutlet weak var tipLabel: UILabel!
-    
     @IBOutlet weak var totalLabel: UILabel!
-    
     @IBOutlet weak var tipSegment: UISegmentedControl!
-    
     @IBOutlet weak var personNumber: UILabel!
-    
     @IBOutlet weak var splitTipLabel: UILabel!
     @IBOutlet weak var splitTotalLabel: UILabel!
     
@@ -31,6 +26,12 @@ class ViewController: UIViewController {
     var currencyFormatter = NumberFormatter()
     var tip : Double = Double()
     var total : Double = Double()
+    
+    var defaults: UserDefaults {
+        return UserDefaults.standard
+    }
+    
+    var tipPercents: [Int] = [Int]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,31 +47,42 @@ class ViewController: UIViewController {
         splitTipLabel.text = tipLabel.text
         splitTotalLabel.text = totalLabel.text
         
-        
-        
+        // Getting the saved defualts
+        if let valueString = defaults.string(forKey: defaultsKeys.key) {
+            billTextField.text = valueString
+        }
+        // update the tip percentage
+        updateTipPercentage()
     }
+    
+    
+    func updateTipPercentage() {
+        tipPercents = defaults.array(forKey: "SavedTipPercentages")  as? [Int] ?? [Int]()
+        print(tipPercents)
+        if (tipPercents == [0, 0, 0] || tipPercents == []) {
+            let tipPercents = [10, 15, 20]
+            defaults.set(tipPercents, forKey: "SavedTipPercentages")
+        }
+        for (index, percent) in tipPercents.enumerated() {
+            tipSegment.setTitle(String(percent) + "%", forSegmentAt: index)
+        }
+    }
+    
     
     override func viewDidAppear(_ animated: Bool) {
+        defaults.synchronize()
+        // set first responder to input bill amount
         billTextField.becomeFirstResponder()
+        updateTipPercentage()
     }
-    
     
     //Use UserDefaults to remember the bill amount across app restarts
     override func viewWillDisappear(_ animated: Bool) {
         // Setting bill amount
-        let defaults = UserDefaults.standard
         defaults.setValue(billTextField.text, forKey: defaultsKeys.key)
+        defaults.set(tipPercents, forKey: "SavedTipPercentages")
         defaults.synchronize()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        // Getting the saved bill amount
-        let defaults = UserDefaults.standard
-        if let valueString = defaults.string(forKey: defaultsKeys.key) {
-            billTextField.text = valueString
-        }
-    }
-
     
     @IBAction func onTap(_ sender: AnyObject) {
         view.endEditing(true)
@@ -79,9 +91,10 @@ class ViewController: UIViewController {
     
     @IBAction func updateCalculation(_ sender: AnyObject) {
         // textField to double number. ?? return 0 if nil
+        
         let bill = Double(billTextField.text!) ?? 0
-        let tipPercentage = [0.1, 0.15, 0.2]
-        tip = bill * tipPercentage[tipSegment.selectedSegmentIndex]
+        
+        tip = bill * Double(tipPercents[tipSegment.selectedSegmentIndex]) / 100
         total = bill + tip
         
         tipLabel.text = currencyFormatter.string(from: NSNumber(value:tip))
@@ -99,6 +112,11 @@ class ViewController: UIViewController {
         number += 1
         personNumber.text = "\(number)"
         updateSplit(number: number)
+        
+        // UIAnimation when hit button, people number effects
+        UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 0, initialSpringVelocity: 0, options: UIViewAnimationOptions.curveEaseIn, animations: {
+            self.personNumber.transform = CGAffineTransform(scaleX: 2, y: 2)
+        }, completion: { (finished) -> Void in self.personNumber.transform = CGAffineTransform(scaleX: 1, y: 1) })
     }
     
     
@@ -109,8 +127,15 @@ class ViewController: UIViewController {
             number = 1
         }
         personNumber.text = "\(number)"
+        
+        // UIAnimation when hit button, people number effects
+        UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 0, initialSpringVelocity: 0, options: UIViewAnimationOptions.curveEaseIn, animations: {
+            self.personNumber.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+        }, completion: { (finished) -> Void in self.personNumber.transform = CGAffineTransform(scaleX: 1, y: 1) })
+     
         updateSplit(number: number)
     }
+    
     
     // update split of tip and total with number
     func updateSplit(number: Int) {
@@ -127,9 +152,7 @@ class ViewController: UIViewController {
     func splitCalculate(number: Int, amount: Double) -> Double{
         let split = amount / Double(number)
         return split
-    }
-    
-    
+    }    
     
 }
 

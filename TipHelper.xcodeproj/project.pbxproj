@@ -14,6 +14,7 @@
 		B83079641E668C04004391C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B83079621E668C04004391C1 /* LaunchScreen.storyboard */; };
 		B830796F1E668C04004391C1 /* TipHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B830796E1E668C04004391C1 /* TipHelperTests.swift */; };
 		B830797A1E668C04004391C1 /* TipHelperUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83079791E668C04004391C1 /* TipHelperUITests.swift */; };
+		B83A05E11E69224600EF9FDC /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83A05E01E69224600EF9FDC /* SettingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		B83079751E668C04004391C1 /* TipHelperUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TipHelperUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B83079791E668C04004391C1 /* TipHelperUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipHelperUITests.swift; sourceTree = "<group>"; };
 		B830797B1E668C04004391C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B83A05E01E69224600EF9FDC /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 			children = (
 				B83079591E668C04004391C1 /* AppDelegate.swift */,
 				B830795B1E668C04004391C1 /* ViewController.swift */,
+				B83A05E01E69224600EF9FDC /* SettingViewController.swift */,
 				B830795D1E668C04004391C1 /* Main.storyboard */,
 				B83079601E668C04004391C1 /* Assets.xcassets */,
 				B83079621E668C04004391C1 /* LaunchScreen.storyboard */,
@@ -264,6 +267,7 @@
 			files = (
 				B830795C1E668C04004391C1 /* ViewController.swift in Sources */,
 				B830795A1E668C04004391C1 /* AppDelegate.swift in Sources */,
+				B83A05E11E69224600EF9FDC /* SettingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,6 +522,7 @@
 				B83079801E668C04004391C1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B83079811E668C04004391C1 /* Build configuration list for PBXNativeTarget "TipHelperTests" */ = {
 			isa = XCConfigurationList;
@@ -526,6 +531,7 @@
 				B83079831E668C04004391C1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B83079841E668C04004391C1 /* Build configuration list for PBXNativeTarget "TipHelperUITests" */ = {
 			isa = XCConfigurationList;
@@ -534,6 +540,7 @@
 				B83079861E668C04004391C1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
