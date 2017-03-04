@@ -4,14 +4,14 @@
 
 Submitted by: Yuanjie Xie (Aiden)
 
-Time spent: **6** hours spent in total
+Time spent: **8** hours spent in total
 
 ## User Stories
 
 The following **required** functionality is complete:
 
 * [X] User can enter a bill amount, choose a tip percentage, and see the tip and total values.
-* [] Settings page to change the default tip percentage.
+* [X] Settings page to change the default tip percentage.
 
 The following **optional** features are implemented:
 * [X] UI animations
@@ -35,7 +35,7 @@ GIF created with [Imgur](http://imgur.com/).
 
 Youtube Video:
 
-https://youtu.be/ETUqew1yZu8
+https://youtu.be/aH4lbDmmmpI
 
 ## Notes
 
