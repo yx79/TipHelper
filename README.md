@@ -40,7 +40,8 @@ https://youtu.be/aH4lbDmmmpI
 
 ## Notes
 
-The challenge I have is the optional type when try to unwrap the label object, I am still new the optional ?/!, which is not in Objective-c/Java. After reading stackoverflow posts, I used ! to unwrap the object since I know it would be a label.
+The challenge I have is the optional type when try to unwrap the label object, I am still new to the optional ?/!, which is not in Objective-c/Java. 
+Another challenge is how to persistant data.
 
 ## License
 
