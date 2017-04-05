@@ -42,6 +42,9 @@ class SettingViewController: UIViewController {
         defaults.synchronize()
     }
     
+    @IBAction func OnTap(_ sender: Any) {
+        view.endEditing(true)
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
